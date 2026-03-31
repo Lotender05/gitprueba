@@ -5,13 +5,14 @@ pipeline {
         DOTNET_CLI_HOME = '/tmp/dotnet_cli'
         SONAR_PROJECT_KEY = "prueba-${env.BRANCH_NAME?.replaceAll('/', '-') ?: 'main'}"
         SONAR_HOST_URL = 'http://localhost:9000'
-        PATH = "/usr/local/bin:/var/jenkins_home/.dotnet/tools:${env.PATH}"
+        PATH = "/usr/local/dotnet:/usr/share/dotnet:/usr/local/bin:/var/jenkins_home/.dotnet/tools:${env.PATH}"
     }
 
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
+                sh 'which dotnet || find / -name "dotnet" -type f 2>/dev/null | head -5'
             }
         }
 
