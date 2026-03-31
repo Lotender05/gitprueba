@@ -5,7 +5,7 @@ pipeline {
         DOTNET_CLI_HOME = '/tmp/dotnet_cli'
         SONAR_PROJECT_KEY = "prueba-${env.BRANCH_NAME?.replaceAll('/', '-') ?: 'main'}"
         SONAR_HOST_URL = 'http://localhost:9000'
-        PATH = "/root/.dotnet/tools:${env.PATH}"
+        PATH = "/usr/local/bin:/var/jenkins_home/.dotnet/tools:${env.PATH}"
     }
 
     stages {
